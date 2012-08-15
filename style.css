@@ -1,0 +1,23 @@
+body {
+	font-family:sans-serif
+}
+
+fieldset {
+	margin:10px 0
+}
+
+table {
+	display:none;
+	margin:10px 0
+}
+
+th, td {
+	padding:2px 10px 2px 0;
+	text-align:left;
+	vertical-align:top
+}
+
+.loading {
+	margin:5px;
+	display:none
+}

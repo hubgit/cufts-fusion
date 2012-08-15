@@ -1,0 +1,43 @@
+<!doctype html>
+
+<meta charset="utf-8">
+<title>Google Fusion Tables Query Example</title>
+
+<link rel="stylesheet" href="style.css">
+
+<form data-search="issn">
+	<fieldset >
+		<legend>Search by ISSN</legend>
+		<input type="text" name="issn" value="1551-823X">
+		<input type="submit" value="search">
+
+		<table>
+			<thead>
+				<tr><th>Source</th><th>Title</th></tr>
+			</thead>
+			<tbody class="output"></tbody>
+		</table>
+
+		<div class="loading">querying&hellip; <img src="loading.gif"></div>
+	</fieldset>
+</form>
+
+<form data-search="title">
+	<fieldset>
+		<legend>Search by Title</legend>
+		<input type="text" name="title" value="Archeological Papers of the American Anthropological Association" style="width: 40em">
+		<input type="submit" value="search">
+
+		<table>
+			<thead>
+				<tr><th>Source</th><th>ISSN</th><th>E-ISSN</th></tr>
+			</thead>
+			<tbody class="output"></tbody>
+		</table>
+
+		<div class="loading">querying&hellip; <img src="loading.gif"></div>
+	</fieldset>
+</form>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="app.js"></script>
