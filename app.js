@@ -16,13 +16,14 @@ var renderItem = function(loadingNode, outputNode) {
 	loadingNode.show();
 
 	return function(data) {
+		var row;
+		
 		loadingNode.hide();
 
 		data.rows.forEach(function(item) {
-			var row = $("<tr/>").appendTo(outputNode);
+			row = $("<tr/>").appendTo(outputNode);
 			item.forEach(function(cell) {
-				if (!cell) cell = "";
-				$("<td/>").text(cell).appendTo(row);
+				$("<td/>").text(cell ? cell : "").appendTo(row);
 			});
 		});
 
@@ -33,22 +34,24 @@ var renderItem = function(loadingNode, outputNode) {
 var handleSubmit = function(event) {
 	event.preventDefault();
 
-	var sql, form = $(this);
+	var sql, 
+	    issn, 
+	    title,
+	    form = $(this),
+	    loadingNode = form.find(".loading"),
+	    outputNode = form.find(".output");
 
 	switch (form.data("search")) {
 		case "issn":
-			var issn = form.find("input[name=issn]").val().replace(/-/g, "");
+			issn = form.find("input[name=issn]").val().replace(/-/g, "");
 			sql = "SELECT file, title FROM " + doc + " WHERE issn = '" + issn + "'";
 		break;
 
 		case "title":
-			var title = form.find("input[name=title]").val();
+			title = form.find("input[name=title]").val();
 			sql = "SELECT file, issn, e_issn FROM " + doc + " WHERE title = '" + title + "'";
 		break;
 	}
-
-	var loadingNode = form.find(".loading");
-	var outputNode = form.find(".output");
 
 	submitQuery(sql).done(renderItem(loadingNode, outputNode));
 };
